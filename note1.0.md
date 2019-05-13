@@ -773,11 +773,20 @@ Math.cos() 參數以弧度為單位
           hot        :true,//热更新
       }
 
-      //静态文件热更新要在`dev-server`命令行里加上`--watch`
+      //静态文件热更新要在dev-server命令行里加上--watch
 
         historyApiFallback: true   //加了所有的访问都会定向到index.html,为了适应路由  404 will be fallback to index.html
 
 
 ##### 5.Loader--翻译
 
-babel-loader
+ //------------------------------------------
+
+    npm i babel-loader babel-core babel-preset-env -D
+
+   *  babel-loader    给`webpack`用
+   *  babel-core      `babel`核心
+   *  babel-preset-env 环境预设
+
+
+//------------------------------------------
