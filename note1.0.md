@@ -5,6 +5,7 @@ const mysql = require('mysql');
 
 let db = mysql.createPool(host: "localhost", user: "root", password: "" , port: "3306", maxconection:10);
 db.query();
+
 --------------
 // 服务端接收
 const http = require('http');
@@ -683,6 +684,7 @@ Math.cos() 參數以弧度為單位
     const pathlib = require('path');
 
     module.exports={
+      mode:'develpment'/'production',
 	    entry:  './src/index.js', //入口文件
 	    output:{
 		  path:pathlib.resolve('dest/'),//目标文件
@@ -700,22 +702,23 @@ Math.cos() 參數以弧度為單位
       path:'xxx',
       filename:'[name].bundle.js'
       }*/
-      
+
       //栗子
       const pathlib = require('path');
 
     module.exports={
-	entry: {
-		index: './src/index.js',
-		test :'./src/1.js'
-	}, //入口文件
-	output:{
-		path:pathlib.resolve('dest/'),//目标文件
-		filename:'[name].bundle.js'
-	}
+      mode:'develpment'/'production',
+    entry: {
+        index: './src/index.js',
+        test :'./src/1.js'
+    }, //入口文件
+    output:{
+        path:pathlib.resolve('dest/'),//目标文件
+        filename:'[name].bundle.js'
     }
-      
-#####    2.再建src文件，放js源文件，編譯前的文件
+    }
+
+##### 2.再建src文件，放js源文件，編譯前的文件
       在模块里写函数没有全局一说
         //------------------------------------------
         
@@ -730,21 +733,51 @@ Math.cos() 參數以弧度為單位
     export let a=12,b=5;        //输出模块的东西         import {a,b} from '...';
   
     //------------------------------------------
-    
+
 ##### 3.打包命令 
       webpack webpack,config.js(webpack --config 要是改了默認文件名就要用這個命令)
       打包結束後就會出現dest文件夾
+
+##### 4.dev-server虛擬开发服務器
+
+      1. 安装
       
-    
-  
-      
-#####4.dev-server虛擬服務器
-      1.安装
       cnpm i webpack webpack-cli webpack-dev-server -D
-      
-      devsever:{
-      mode:'develpment'/'production',
+
+     devsever:{
+       contentBase: pathlib.resolve('static');
+       port       :8090,
+       hot        :true,//热更新
       }
-      
-      
+
       執行命令：webpack-dev-server
+
+
+      2. 快速启动命令
+        在`package.json`中配置命令:
+        
+        "scripts":{
+          "start": "webpack-dev-server --inline --config 2-devserver.webpack.js"
+        },
+          --inline指的是整个页面的刷新
+          执行命令：npm start
+
+
+     3. 热更新，要加上`plugins`
+        const Webpack= require('webpack');
+
+        plugins[
+          new Webpack.hotModuleReplacementPlugins()//模块热更新
+        ],
+        devsever:{
+          hot        :true,//热更新
+      }
+
+      //静态文件热更新要在`dev-server`命令行里加上`--watch`
+
+        historyApiFallback: true   //加了所有的访问都会定向到index.html,为了适应路由  404 will be fallback to index.html
+
+
+##### 5.Loader--翻译
+
+babel-loader
