@@ -813,3 +813,76 @@ module:{
   ts-loader 
 
   npm i -g typescript
+ 
+
+ 1.类型
+ 变量、参数、返回值
+
+  指明类型：
+  1.显式声明    let a:string;
+  2.隐式声明    let a =12;
+
+ 2.类
+ 新的写法
+ //访问修饰符--public/private/protected
+
+`public` 任何人都可以修改
+`private` 只有类内能修改
+`protected` 只有类和子类能修改
+
+//ts 能在变量、函数后指定             
+    let oDiv:number
+    let oDiv:string
+    let oDiv:boolean
+    let oDiv:
+    function():void{
+   }
+
+   //访问修饰符怎么用
+//“最小访问原则”
+`private->protected->public`
+
+属性都是`private`和`protected`，方法可以是`public`
+
+修饰符
+`static` --- 静态成员  无需实例化即可调用
+`const`  --- 只读成员  只读的，不能修改 
+    class Person{
+      public static user:string='blue';//静态成员
+        constructor(name:string, private age:number){
+          this.name=name;
+      }
+    }
+    
+    let p:Person = new Person('blue',18);
+    console.log(Person.user);
+    
+    //tsc -t es5 xxx.ts 可选择用什么版本的es来编译 
+    
+    //存取器
+    set/get    编译不了es3/4
+
+
+ 3.高级特性
+ 抽象、接口   
+ //抽象类，只提供模板，不自己去实现，给子类提供规范
+    //抽象、接口为了规范所有子类
+    
+    //抽象类只能作为父级使用，不能直接被实例化，抽象类必须被继承，父级不能使用这些方法。
+    abstruct class Shape{
+      
+    }
+    
+    //Abstract 关键字同样可以用来声明抽象方法，抽象方法只包含一个方法名，而没有方法体。
+    abstruct area():number; 
+    
+    
+    //继承父类的子类要强制实现父类的抽象方法
+    
+    //interface  接口只能实现，不能继承，接口能继承接口 
+    
+    
+    //1.对象有属性__proto__,指向该对象的构造函数的原型对象。
+    //2.方法除了有属性__proto__,还有属性prototype，prototype指向该方法的原型对象。
+    
+  ![](https://pic1.zhimg.com/80/e83bca5f1d1e6bf359d1f75727968c11_hd.jpg)!
