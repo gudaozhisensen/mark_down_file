@@ -815,23 +815,27 @@ module:{
   `npm i -g typescript`
  
 
- 1.类型
+  1.类型
  变量、参数、返回值
 
   指明类型：
+
   1.显式声明    let a:string;
 
   2.隐式声明    let a =12;
 
- 2.类
+  2.类
+
  新的写法
- //访问修饰符--public/private/protected
+
+ //访问修饰符--`public/private/protected`
 
 `public` 任何人都可以修改
 `private` 只有类内能修改
 `protected` 只有类和子类能修改
 
-//ts 能在变量、函数后指定             
+//ts 能在变量、函数后指定
+
     let oDiv:number
 
     let oDiv:string
