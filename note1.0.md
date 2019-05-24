@@ -806,13 +806,13 @@ module:{
 
 //-------------------05.15------------------
 
-  typeScript
+  ##### typeScript
    
-   补充js没有的特性--类型，接口，抽象
+补充js没有的特性--类型，接口，抽象
 
-  ts-loader 
+  `ts-loader `
 
-  npm i -g typescript
+  `npm i -g typescript`
  
 
  1.类型
@@ -820,6 +820,7 @@ module:{
 
   指明类型：
   1.显式声明    let a:string;
+
   2.隐式声明    let a =12;
 
  2.类
@@ -832,13 +833,18 @@ module:{
 
 //ts 能在变量、函数后指定             
     let oDiv:number
+
     let oDiv:string
+
     let oDiv:boolean
+
     let oDiv:
+
     function():void{
    }
 
    //访问修饰符怎么用
+
 //“最小访问原则”
 `private->protected->public`
 
@@ -846,7 +852,9 @@ module:{
 
 修饰符
 `static` --- 静态成员  无需实例化即可调用
+
 `const`  --- 只读成员  只读的，不能修改 
+
     class Person{
       public static user:string='blue';//静态成员
         constructor(name:string, private age:number){
@@ -859,13 +867,15 @@ module:{
     
     //tsc -t es5 xxx.ts 可选择用什么版本的es来编译 
     
-    //存取器
+
+  //存取器
     set/get    编译不了es3/4
 
 
  3.高级特性
- 抽象、接口   
- //抽象类，只提供模板，不自己去实现，给子类提供规范
+     抽象、接口   
+    //抽象类，只提供模板，不自己去实现，给子类提供规范
+
     //抽象、接口为了规范所有子类
     
     //抽象类只能作为父级使用，不能直接被实例化，抽象类必须被继承，父级不能使用这些方法。
@@ -884,5 +894,5 @@ module:{
     
     //1.对象有属性__proto__,指向该对象的构造函数的原型对象。
     //2.方法除了有属性__proto__,还有属性prototype，prototype指向该方法的原型对象。
-    
+
   ![](https://pic1.zhimg.com/80/e83bca5f1d1e6bf359d1f75727968c11_hd.jpg)!
