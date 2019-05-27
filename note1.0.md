@@ -1038,12 +1038,22 @@ module:{
 4.事件
     v-on:(@)
 
+ //-------------------------------------------------------------------------------- 
 
-5.循环
+5.循环 v-for 
+
+key 数据自动同步到视图
+
+***Vue需要能把数据和DOM组件对应起来--提高性能
+    :key-数据的ID
+
+    *** :key="json.ID"
+     
     v-for="val,key in 数组" 
     v-for="val,key in json"
 
-
+ 
+ //--------------------------------------------------------------------------------
 
 6. v-show  display
 
@@ -1061,3 +1071,25 @@ module:{
     应用：
     1,频繁使用的复杂公式
     2,需要监控的--一个固定的全局管理
+
+    computed:{
+      result: function(){
+        return this.n1*this.n2;
+      }
+    }
+      完整版：
+      computed:{
+        result:{
+          set: function(){},
+          get: function(){} 
+        }
+      } 
+
+      data和computed 有相同的数据 data上的数据会覆盖computed 本身 
+
+10. 监听(watch) 
+    watch:{
+      a(newVal,oldVal){
+        console.log("a变了,从${oldVal}变成${newVal}");
+      }
+    }
