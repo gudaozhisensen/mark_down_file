@@ -1129,4 +1129,71 @@ Math.cos() 參數以弧度為單位
 
 建议所有的异步操作都在函数里，提升代码的可读性，基本上的异步操作都是数据交互
 
+//-------------------------------------------------------------------------------- 
+
   11. 路由
+
+`vue-router` 
+路由切换的是组件,页面不变，变的是组件
+
+  --SPA(单页应用)
+
+  配置路由表->创建Vue对象,添加`router`(路由)->在根元素中添加`<router-view>`和`<router-link to=''>`
+
+    //1. 配置路由表
+    let router= new Vuerouter({
+      
+        routers:[
+          //路由定向,定向到不同的page
+          {path:'/user'/, component:user}
+          ,
+          {path:'/company/:id',
+           component:{
+            template:'<div>卖家{{$router}}</div>'
+            }
+          }
+        ]
+    });
+
+  *  具体可以看 `sell-app`的`main.js`,每个组件单独放之后如何引入组件(分离后的组件要用`<template>`来包住)
+  *   路由参数 `:id`,`vue`自带
+
+
+    //2. 创建vue对象
+    const vm = new Vue({
+      el:'#app',
+      router //名字和值一样可以简写
+    })
+
+    <body>
+      <div id="app">
+        <router-view></router-view> //router里注册的组件会在这里显示
+        <router-link to='/user'>买家</router-link>
+        <router-link to='/company'>卖家</router-link>
+
+        hash
+      </div>
+    </body>
+//-------------------------------------------------------------------------------- 
+
+#### 关于路由
+1. 由`hash`完成
+2. `router-link`就是个`a`
+3. `router-view`是个占位符，要显示的东西就会显示到这里
+4. 一个组件`(component)`也是一个完整的vm
+
+
+`data` 写到`component`内部必须是个`function`, return `json`
+
+    component:{
+      data(){
+        return{
+          count:12;
+        };
+      }
+    }
+    method:{
+      fun(){
+        alert("aaa");
+      }
+    }
