@@ -1149,7 +1149,7 @@ Math.cos() 參數以弧度為單位
           ,
           {path:'/company/:id',
            component:{
-            template:'<div>卖家{{$router}}</div>'
+            template:'<div>卖家{{$router.params.id }}</div>', 
             }
           }
         ]
@@ -1158,11 +1158,21 @@ Math.cos() 參數以弧度為單位
   *  具体可以看 `sell-app`的`main.js`,每个组件单独放之后如何引入组件(分离后的组件要用`<template>`来包住)
   *   路由参数 `:id`,`vue`自带
 
+      `#/xxx/:x/:x/:x?a=xx&b=xx`
+      
+      `$route.params` 获取`/:x/:x/:x`
+
+      `$route.query` 获取`?a=xx&b=xx`
 
     //2. 创建vue对象
     const vm = new Vue({
       el:'#app',
-      router //名字和值一样可以简写
+      router, //名字和值一样可以简写
+      watch:{
+        $route(newVal,oldVal){
+
+        } 
+      }
     })
 
     <body>
@@ -1197,3 +1207,14 @@ Math.cos() 參數以弧度為單位
         alert("aaa");
       }
     }
+
+`$route` 存放当前路由状态
+
+#### 跳转之前确认
+放在component里
+beforeRouterUpdate(to,from,next){
+    if(confirm('离开本页')){
+      next();
+    }
+}
+
