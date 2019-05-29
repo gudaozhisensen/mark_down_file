@@ -1210,6 +1210,8 @@ Math.cos() 參數以弧度為單位
 
 `$route` 存放当前路由状态
 
+//-------------------------------------------------------------------------------- 
+
 #### 跳转之前确认
 放在component里
 beforeRouterUpdate(to,from,next){
@@ -1218,3 +1220,71 @@ beforeRouterUpdate(to,from,next){
     }
 }
 
+
+//-------------------------------------------------------------------------------- 
+1. 路由
+2. 参数
+
+      `#/xxx/:x/:x/:x?a=xx&b=xx`
+
+      `$route.params` 获取`/:x/:x/:x`
+
+      `$route.query` 获取`?a=xx&b=xx`
+3. 事件
+    `beforeRouterUpdate(to,from,next)`
+
+//-------------------------------------------------------------------------------- 
+#### 11.1 嵌套路由
+
+    let router = new VueRouter(){
+      routes:[
+        {
+          path:'/user',
+          component:{template:'<div>用户<router-view></router-view></div>'},
+              //子路由
+          children:[
+            //1
+            {
+              path:'/info',
+              component:{template:'<span>用户信息</span>'},
+              children:[
+                ...
+              ]
+            },
+            //2
+            {
+              path:'/avatar',
+              component:{template:'<span>头像</span>'}
+            }
+          ]
+        },
+        {
+          path:'/company',
+          component:{template:'<div>公司<router-view></router-view></div>'},
+          //子路由
+          children:[
+            //1
+            {
+              path:'/update',
+              component:{template:'<div>更新<router-view></router-view></div>'},
+              children:[
+                ...
+              ]
+            },
+            //2
+            {
+              path:'/show',
+              component:{template:'<div>展示<router-view></router-view></div>'}
+            }
+          ]
+        }
+      ]
+    }
+
+    <div id="app">
+        <router-link to="/user/info">用户信息</router-link>
+        <router-link to="/user/avatar">头像</router-link>
+        <router-link to="/company/update">更新</router-link>
+        <router-link to="/company/show">展示</router-link>
+    </div>
+#### 11.2 命名路由
