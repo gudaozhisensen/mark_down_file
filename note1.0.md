@@ -1245,7 +1245,7 @@ beforeRouterUpdate(to,from,next){
           children:[
             //1
             {
-              path:'/info',
+              path:'info',
               component:{template:'<span>用户信息</span>'},
               children:[
                 ...
@@ -1253,7 +1253,7 @@ beforeRouterUpdate(to,from,next){
             },
             //2
             {
-              path:'/avatar',
+              path:'avatar',
               component:{template:'<span>头像</span>'}
             }
           ]
@@ -1265,7 +1265,7 @@ beforeRouterUpdate(to,from,next){
           children:[
             //1
             {
-              path:'/update',
+              path:'update',
               component:{template:'<div>更新<router-view></router-view></div>'},
               children:[
                 ...
@@ -1273,7 +1273,7 @@ beforeRouterUpdate(to,from,next){
             },
             //2
             {
-              path:'/show',
+              path:'show',
               component:{template:'<div>展示<router-view></router-view></div>'}
             }
           ]
@@ -1286,5 +1286,47 @@ beforeRouterUpdate(to,from,next){
         <router-link to="/user/avatar">头像</router-link>
         <router-link to="/company/update">更新</router-link>
         <router-link to="/company/show">展示</router-link>
+        <router-view></router-view>
     </div>
-#### 11.2 命名路由
+//-------------------------------------------------------------------------------- 
+#### 11.2 命名路由(用路由的名字进行索引)
+  1. 全路径
+    2. `json->{name:'名字',params:{},query:{}}`
+
+     name: 'i', 
+     <router-link :to="{name:'i', params:{id:3}}">用户信息</router-link>
+
+    {
+          path:'/user',
+          component:{template:'<div>用户<router-view></router-view></div>'},
+              //子路由
+          children:[
+            //1
+            {
+              path: 'info',
+              name: 'i', 
+              component:{template:'<span>用户信息</span>'},
+              children:[
+                ...
+              ]
+            },
+            //2
+            {
+              path:'avatar',
+              name:'a',
+              component:{template:'<span>头像</span>'}
+            }
+          ]
+        }
+
+    <div id="app">
+        <router-link :to="{name:'i',params:{id:3}}">用户信息</router-link>
+        <router-link to="/user/avatar">头像</router-link>
+        <router-link to="/company/update">更新</router-link>
+        <router-link to="/company/show">展示</router-link>
+        <router-view></router-view>
+    </div>
+//-------------------------------------------------------------------------------- 
+
+`$route`  信息
+`$router` 操作  
