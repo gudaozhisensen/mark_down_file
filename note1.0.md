@@ -1335,3 +1335,24 @@ beforeRouterUpdate(to,from,next){
 
 
 注册组件
+
+    import ListItem from 'list_item';
+
+    export default{
+     compenents:{
+       ListItem
+     }
+    }//声明之后可以<ListItem></ListItem>使用
+
+//-------------------------------------------------------------------------------- 
+  
+  父组件给子组件传递数据
+
+  
+  `this.$attrs`  父级传过来的所有数据
+  this.txt = this.attrs['str'];
+
+
+  372c7a45a932043a820931d948f3ddaa72d1206d
+
+  372c7a45a932043a820931d948f3ddaa72d1206d
