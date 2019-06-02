@@ -1352,7 +1352,8 @@ beforeRouterUpdate(to,from,next){
   `this.$attrs`  父级传过来的所有数据
   this.txt = this.attrs['str'];
 
-
+父-> 子  :xxx="数据"(父级)   子级.$attrs.xxx(子集  )
+ 
   372c7a45a932043a820931d948f3ddaa72d1206d
 
-  372c7a45a932043a820931d948f3ddaa72d1206d
+  372c7a45a932043a820931d948f3ddaa72d1206d 
