@@ -1355,5 +1355,11 @@ beforeRouterUpdate(to,from,next){
 父-> 子  :xxx="数据"(父级)   子级.$attrs.xxx(子集  )
  
   372c7a45a932043a820931d948f3ddaa72d1206d
-
+   
   372c7a45a932043a820931d948f3ddaa72d1206d 
+
+//-------------------------------------------------------------------------------- 
+
+    server.use(async (cts,next)=>{
+       ctx.set('Access-control-Allow-Origin','*');
+    });
