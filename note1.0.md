@@ -1334,6 +1334,7 @@ beforeRouterUpdate(to,from,next){
 //-------------------------------------------------------------------------------- 
 
 
+
 注册组件
 
     import ListItem from 'list_item';
@@ -1352,14 +1353,67 @@ beforeRouterUpdate(to,from,next){
   `this.$attrs`  父级传过来的所有数据
   this.txt = this.attrs['str'];
 
-父-> 子  :xxx="数据"(父级)   子级.$attrs.xxx(子集  )
+#### 组件间通信
+
+父-> 子  :xxx="数据"(父级)    子级 $attrs.xxx (子级)
+
+子 -> 父 函数 
  
   372c7a45a932043a820931d948f3ddaa72d1206d
-   
+
   372c7a45a932043a820931d948f3ddaa72d1206d 
+
+  ### Axios
+  ajax库
 
 //-------------------------------------------------------------------------------- 
 
     server.use(async (cts,next)=>{
        ctx.set('Access-control-Allow-Origin','*');
     });
+
+
+
+
+    Vue.component('todo-list',{
+      template:''
+    })
+
+
+    
+//-------------------------------------------------------------------------------- 
+
+//-----------------------------------20190613--------------------------------------------- 
+
+
+### vue 状态统一管理
+
+vuex
+1.state -- 状态(全局唯一)
+
+2.getter   获取状态
+
+3.mutation  修改状态操作
+
+4.action    提交mutation
+
+    import Vuex from 'vuex'
+
+    Vue.use(Vuex);
+    Vue.config.productionTip = true;
+    const store = Vuex.store({
+      strict true,//严格模式--只能由mutation修改状态
+      state:{
+        count:0;
+      },
+      munation:{
+        addCount(state,arg){
+          state.count++;
+        },
+        minuCount(state,arg){
+          state.count--;
+        }
+      }
+    });
+
+
