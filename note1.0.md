@@ -1447,3 +1447,17 @@ vuex
 
 
 //-------------------------------------------------------------------------------- 
+
+`srcset` 属性
+用于浏览器根据宽、高和像素密度来加载相应的图片
+
+    <picture>
+
+      //屏幕尺寸小于767px加载xxx.jpg
+      <source media="(max-width:767px)" srcset="xxx.jpg">
+      </source>
+
+      <source media="(min-width:768px)" srcset="yyy.jpg">
+      </source>
+      
+    </picture>
