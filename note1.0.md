@@ -1335,7 +1335,33 @@ beforeRouterUpdate(to,from,next){
 
 
 
-注册组件
+#### 注册组件
+
+##### 全局注册
+
+    Vue.components('my-component',{
+      template:'<App>'
+    })
+
+    var app = new Vue({
+      el:'#app'
+    })
+
+##### 局部注册
+
+    var app =new Vue({
+      el:'#app',
+      components:{
+        'my-components':App
+      }
+    })
+    
+*区别好像就是放不放在new Vue里*
+
+<!--  -->
+在`table`中使用组件,用`is`属性挂载,`is="my-component"`
+
+//--------------------------------------------------------------------------------
 
     import ListItem from 'list_item';
 
@@ -1462,6 +1488,23 @@ vuex
       
     </picture>
 
+
+
+
+//-------------------------------------------------------------------------------- 
+
+#### vue v-model 修饰符
+
+`v-model.lazy` 失焦或按回车后才更新   
+
+`v-model.number` 将输入转为Number类型
+ 
+`v-model.trim` 过滤首尾空格
+
+`<card>`
+
+`data`必须是函数，以函数的形式`return`出去                                                                                               //-------------------------------------------------------------------------------- 
+                                                               
 
 ref=""  vue DOM 操作
 
