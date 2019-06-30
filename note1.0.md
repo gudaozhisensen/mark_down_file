@@ -1461,3 +1461,12 @@ vuex
       </source>
       
     </picture>
+
+
+ref=""  vue DOM 操作
+
+    <div class="menu-wrapper" ref="menuWrapper">
+
+    this.$refs.menuWrapper//操作
+
+    food-list-hook 表明只是用来被js选择的class,并没有实际的样式效果
