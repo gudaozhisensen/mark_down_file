@@ -1381,9 +1381,20 @@ beforeRouterUpdate(to,from,next){
 
 #### 组件间通信
 
+    <father-component></father-component>//父组件,和子组件的挂载点father-component
+    vue.component('father-component',{
+      props   : ['message'],             //传递父组件数据,props声明
+      template: '<h3>{{message}}</h3>'  //子组件和子组件接收父组件数据
+    })
+  *props可以将数据从父组件传入子组件，*
+
+  *slot可以将html从父组件传入子组件。*
+
 父-> 子  :xxx="数据"(父级)    子级 $attrs.xxx (子级)
 
 子 -> 父 函数 
+
+父组件的模板中包含子组件
  
   372c7a45a932043a820931d948f3ddaa72d1206d
 
@@ -1502,4 +1513,12 @@ vuex
 `<card>`
 
 `data`必须是函数，以函数的形式`return`出去                                                                                                                                                               
+
+
+//-------------------------------------------------------------------------------- 
+#### slot(插槽)
+
+ *props可以将数据从父组件传入子组件，*
+
+  *slot可以将html从父组件传入子组件。*
 
