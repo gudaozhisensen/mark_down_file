@@ -974,7 +974,7 @@ Math.cos() 參數以弧度為單位
 
 # vue 
 
-
+vue 下的`template` 里 有且只有一个`div`
 
     MVC模式
 
@@ -1538,5 +1538,7 @@ ref=""  vue DOM 操作
 `food-list-hook` 表明只是用来被`js`选择的`class`,并没有实际的样式效果
 
 
-
+vue 方法命名规则
+仅限于被组件内部调用的方法，一般在方法前加下划线 `_initCalc`
+可以被外部调用,一般就正常写                    `calculator`
 
