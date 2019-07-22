@@ -1666,3 +1666,7 @@ vue 方法命名规则
     }//唯一關鍵字阻止不支持與媒體功能媒體查詢從應用指定的樣式舊的瀏覽器。
 
 
+https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html
+https://ultraq.github.io/thymeleaf-layout-dialect/
+
+https://waylau.gitbooks.io/thymeleaf-tutorial/docs/introduction.html
