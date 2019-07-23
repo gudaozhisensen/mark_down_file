@@ -1670,3 +1670,5 @@ https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html
 https://ultraq.github.io/thymeleaf-layout-dialect/
 
 https://waylau.gitbooks.io/thymeleaf-tutorial/docs/introduction.html
+
+https://github.com/cloudfavorites/favorites-web
