@@ -665,7 +665,7 @@ GET => `req.query` 直接用就行
  <!-- -------------------------------------------------------------------------------- -->     
     <!-- -------------------------------------------------------------------------------- -->  
 <!-- -------------------------------------------------------------------------------- -->  
-#### cookie session
+### cookie
     cookie--存在浏览器里
     --4k
     --不安全
@@ -673,6 +673,36 @@ GET => `req.query` 直接用就行
     session--存在服务器
 
     npm i cookie-parser cookie-session -D
+
+
+#### cookie parser
+
+    npm i cookie-parser -D
+
+ 发送/接收`cookies` 
+
+`document.cookie`             前端获取`cookies`
+
+`req.cookies`                   接收
+
+`req.signedCookies`             带签名的`cookies`
+
+`res.cookie(name,val, options)` 发送
+    
+    server.use(cookieParser('ghrkjiiu%0-340gfkjj^&$#3-9kjfkdj(*$)_FJIJIHGIHUI+#0-erfkdjgkfd'));//括号里为加密的密钥
+
+    console.log(req.cookies);//普通cookies
+    console.log(req.signedCookies);//加密的cookies
+
+    res.cookie('b',5,{signed:true});
+    res.send('aaa');
+
+  <!-- -------------------------------------------------------------------------------- -->         
+  #### cookie session
+
+      npm i cookie-session -D
+
+
   <!-- -------------------------------------------------------------------------------- -->          
    
     <!-- 2019.04.25-->
