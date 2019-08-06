@@ -1720,3 +1720,12 @@ https://github.com/cloudfavorites/favorites-web
 
 <!-- 2019-08-05 -->
 
+
+
+
+
+<!-- 2019-08-06 -->
+
+`JSON.parse()`//把一個JSON字串轉換成 JavaScript的數值或是物件
+
+`JSON.stringify()`//将一个JavaScript值(对象或者数组)转换为一个 JSON字符串
