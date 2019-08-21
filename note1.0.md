@@ -1320,7 +1320,7 @@ vue 下的`template` 里 有且只有一个`div`
       watch:{
         $route(newVal,oldVal){
 
-        } 
+        }  
       }
     })
 
