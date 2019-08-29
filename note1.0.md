@@ -1124,6 +1124,7 @@ GET => `req.query` 直接用就行
 # vue 
 
 vue 下的`template` 里 有且只有一个`div`
+而且不能把html和body作为根
 
     MVC模式
 
@@ -1311,7 +1312,7 @@ vue 下的`template` 里 有且只有一个`div`
       
       `$route.params` 获取`/:x/:x/:x`
 
-      `$route.query` 获取`?a=xx&b=xx`
+      `$route.query` 获取`?a=xx&b=xx` 
 
     //2. 创建vue对象
     const vm = new Vue({
