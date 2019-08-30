@@ -1212,6 +1212,7 @@ vue 下的`template` 里 有且只有一个`div`
 
 `Vue`需要能把数据和DOM组件对应起来--提高性能
 
+虚拟dom，在大型项目中比较合适
     :key-数据的ID
     :key="json.ID"
      
@@ -1289,6 +1290,9 @@ vue 下的`template` 里 有且只有一个`div`
   --SPA(单页应用)
 
   配置路由表->创建Vue对象,添加`router`(路由)->在根元素中添加`<router-view>`和`<router-link to=''>`
+
+   // 带查询参数，下面的结果为 `/register?plan=private`
+  `<router-link :to="{ path: 'register', query: { plan: 'private' }}">Register</router-link>`
 
     //1. 配置路由表
     let router= new Vuerouter({
@@ -1477,6 +1481,9 @@ beforeRouterUpdate(to,from,next){
         <router-view></router-view>
     </div>
 //-------------------------------------------------------------------------------- 
+#### Router 构建选项
+linkActiveClass:'active' //**链接激活时使用的css类名**
+
 
 `$route`  信息
 `$router` 操作   
