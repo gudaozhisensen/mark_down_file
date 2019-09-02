@@ -1557,6 +1557,9 @@ linkActiveClass:'active' //**链接激活时使用的css类名**
 
   372c7a45a932043a820931d948f3ddaa72d1206d 
 
+
+
+//--------------------------------------------------------------------------------
   ### Axios
   ajax库
 
@@ -1573,10 +1576,24 @@ linkActiveClass:'active' //**链接激活时使用的css类名**
       template:''
     })
 
+* 把axios放在main.js里
 
+      import axios from 'axios';
+      Vue.prototype.ajax = axios;
     
-//-------------------------------------------------------------------------------- 
+* 模块内部
+      
+      (await this.ajax('url')).data;
 
+//--------------------------------------------------------------------------------
+
+
+#### fecth 
+原生js改进版的ajax
+
+      this.item = await (await fecth('url')).json();
+
+      //fecth出来的是promise对象，data在json对象里，json也 是个promise对象，await两次之后才能拿到数据
 //-----------------------------------20190614--------------------------------------------- 
 
 
@@ -1615,6 +1632,20 @@ vuex
     this.$store.dispatch('action名字',参数);
 
 
+//-------------------------------------------------------------------------------- 
+
+#### axios
+ajax库
+
+    axios({
+      method:'get(default)/post',
+      url:'/user/1.txt',
+      dataType:'json',
+    }).then(res->{
+        console.log(res);
+    },res->{
+        console.log('失败');
+    });
 //-------------------------------------------------------------------------------- 
 
 组件 `dispatch->  action commit -> mutution state.xxx -> state`
