@@ -1705,7 +1705,7 @@ _Action 通过 `store.dispatch` 方法触发_
       munation:{
         addCount(state,arg){
           state.count++;
-        },
+        }, 
         minuCount(state,arg){
           state.count--;
         }
@@ -1722,7 +1722,11 @@ _Action 通过 `store.dispatch` 方法触发_
 数据交互--`getter`
 其他异步操作--`action`
 
+computed：数据变化时自动计算值
+getters 不适合数据交互以外的操作
 
+1.数据搭好---vuex+axios/fetch
+2.组件---展示、逻辑
 
 //-------------------------------------------------------------------------------- 
 
