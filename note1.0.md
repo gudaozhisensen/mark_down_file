@@ -1587,53 +1587,6 @@ linkActiveClass:'active' //**链接激活时使用的css类名**
 
 //--------------------------------------------------------------------------------
 
-
-#### fecth 
-原生js改进版的ajax
-
-      this.item = await (await fecth('url')).json();
-
-      //fecth出来的是promise对象，data在json对象里，json也 是个promise对象，await两次之后才能拿到数据
-//-----------------------------------20190614--------------------------------------------- 
-
-
-### vue 状态统一管理
-
-vuex
-1. state -- 状态(全局唯一)
-
-2. getter   获取状态
-
-3. mutation  修改状态操作
-
-4. action    提交mutation
-
-
-*(1)创建*
-
-    const store = Vuex.store({
-      strict true,
-      state:{},
-      mutation:{},
-      action:{},
-      getters:{}
-    });
-
-*(2)注册*
-
-    vue.use(Vuex);
-    //store 引入
-    let vm = new Vue({
-      store:store
-    });
-
-*(3)组件里-用*
-
-    this.$store.dispatch('action名字',参数);
-
-
-//-------------------------------------------------------------------------------- 
-
 #### axios
 ajax库
 
@@ -1646,7 +1599,96 @@ ajax库
     },res->{
         console.log('失败');
     });
+
 //-------------------------------------------------------------------------------- 
+
+#### fecth 
+原生js改进版的ajax
+
+      this.item = await (await fecth('url')).json();
+
+      //fecth出来的是promise对象，data在json对象里，json也 是个promise对象，await两次之后才能拿到数据
+
+
+//-----------------------------------20190614--------------------------------------------- 
+
+
+### vue 状态统一管理
+
+### vuex
+1. state -- 状态(全局唯一)
+
+2. getter   获取状态
+
+3. mutation  修改状态操作
+
+4. action    提交mutation,动作
+
+ ![](https://vuex.vuejs.org/vuex.png)! 
+
+#### *(1)创建*
+
+    const store = Vuex.store({
+      //里面有json参数
+      strict true,
+      state:{
+        count:0
+      },
+      mutations:{
+        addCount(state,arg){
+          state.count++;
+          //addCount:state => state.count++
+        }
+      },
+      actions:{
+         _//用actions去调mutations_
+        addCount(store(是个json,大多数要里面的commit),arg){
+
+          或//addCount({commit},arg){
+          //  commit('addCount',arg);
+          }
+        }
+      },
+      getters:{}
+    }); 
+
+#### *(2)注册*
+
+_通过在根实例中注册 `store` 选项，该 `store` 实例会注入到根组件下的所有子组件中，且子组件能通过 `this.$store` 访问到。_
+
+    vue.use(Vuex);
+    //store 引入
+    const app = new Vue({
+      store:store
+      
+    });
+
+#### *(3)组件里-用(可跨组件)*
+
+
+_由于 store 中的状态是响应式的，在组件中调用 store 中的状态简单到仅需要在计算属性中返回即可。触发变化也仅仅是在组件的 methods 中提交 mutation。_
+    
+    computed:{
+      count(){
+        return this.$store.state.count;
+      }
+    },
+    methodd:{
+      fnAdd(){
+        this.$store.dispacth('addcount',arg);
+      }
+    }
+
+
+#### 分发 `Action`
+_Action 通过 `store.dispatch` 方法触发_
+
+`this.$store.dispatch('action名字',参数);`
+
+  组件-> `dispacth` -> `action commit` ->`mutation`(操作`state`对象,修改的具体方法) `state.xx` -> `state`
+
+//-------------------------------------------------------------------------------- 
+
 
 组件 `dispatch->  action commit -> mutution state.xxx -> state`
 
@@ -1669,6 +1711,17 @@ ajax库
         }
       }
     });
+ 
+
+//-------------------------------------------------------------------------------- 
+在 `Vuex` 中，`mutation` 都是同步事务
+手动触发`action`，异步操作都放`action`        适合异步
+`getters`，同步操作都放`getters`             适合同步
+
+结论：
+数据交互--`getter`
+其他异步操作--`action`
+
 
 
 //-------------------------------------------------------------------------------- 
