@@ -1825,3 +1825,10 @@ https://github.com/cloudfavorites/favorites-web
 `JSON.parse()`//把一個JSON字串轉換成 JavaScript的數值或是物件
 
 `JSON.stringify()`//将一个JavaScript值(对象或者数组)转换为一个 JSON字符串
+
+
+
+`npm config list` 查看config 列表
+`npm config set http(https)-proxy http://your_proxy_ip:port`  
+`proxy_ip`为`netstat`所得的ip
+可以解决proxy 问题
