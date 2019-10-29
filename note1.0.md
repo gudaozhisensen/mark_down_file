@@ -794,7 +794,7 @@ GET => `req.query` 直接用就行
     //闭包就是：一个内部函数可以记住它被创建时的环境。
     //闭包就是能够读取其他函数内部变量的函数，让这些变量的值始终保持在内存中。
     //A函数中定义了B函数并且它返回了B函数，那么不管B函数在哪里被调用或如何被调用，它都会保留A函数的作用域
-    
+    当在函数内部声明了内部函数，并将内部函数作为值返回，就会产生闭包。
     (function(){document.title=location.href;})();
     //第一对圆括号中的函数用作声明一个匿名函数，而最后的一对圆括号则用来执行这个函数。
     
@@ -817,7 +817,7 @@ GET => `req.query` 直接用就行
     //开发服务器
 
     //--------------------------------------------------------------------------------
-
+ 
    
 
 ####     1. webpack.config.js  先新建的配置文件
@@ -1108,7 +1108,7 @@ GET => `req.query` 直接用就行
   //-------------------05.26------------------
 
 
-    tsc --init 创建tsconfig.json 配置文件
+    tsc --init 创建tsconfig.json  配置文件
     
 
 泛型
@@ -1833,6 +1833,207 @@ https://github.com/cloudfavorites/favorites-web
 `proxy_ip`为`netstat`所得的ip
 可以解决proxy 问题
 
+<!--  -->
+<!-- 小程序 -->
+
+文件类型：
+wxml：html的变种，不能用普通html标签
+wxss：css的变种，跟普通css差不多
+js：代码
+json：配置
+
+工程结构：
+pages/                  页面文件
+utils/                  工具文件
+app.js                  类似vue的App.vue，主文件
+  注册页面——pages数组
+  配置窗口属性——window
+app.json                整个程序配置
+app.wxss                公用样式
+project.config.json     工程配置——不要手动改，点击右边的"详情"
+
+pages字段 —— 用于描述当前小程序所有页面路径，这是为了让微信客户端知道当前你的小程序页面定义在哪个目录。
+window字段 —— 定义小程序所有页面的顶部背景颜色，文字颜色定义等。
+
+小程序框架系统分为两部分：逻辑层（App Service）和 视图层（View）
+场景值 https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/scene.html
+
+小程序框架的逻辑层并非运行在浏览器中，因此 JavaScript 在 web 中一些能力都无法使用，如 window，document 等。
+
+整个小程序只有一个 App 实例，是全部页面共享的。开发者可以通过 getApp 方法获取到全局唯一的 App 示例
+
+(注册小程序)小程序生命周期
+onLaunch->onShow->onHide 
+
+(注册页面)页面生命周期
+onLoad->onReady->onShow->onHide
+
+getCurrentPages() 函数获取当前页面栈。
+
+页面路由
+页面栈
+框架以栈的形式维护了当前的所有页面。 当发生路由切换的时候，页面栈的表现如下：
+
+路由方式	    页面栈表现
+初始化	      新页面入栈
+打开新页面	  新页面入栈
+页面重定向	  当前页面出栈，新页面入栈
+页面返回	    页面不断出栈，直到目标返回页
+Tab 切换	    页面全部出栈，只留下新的 Tab 页面
+重加载	      页面全部出栈，只留下新的页面
+
+navigateTo, redirectTo 只能打开非 tabBar 页面。
+switchTab 只能打开 tabBar 页面。
+reLaunch 可以打开任意页面。
+页面底部的 tabBar 由页面决定，即只要是定义为 tabBar 的页面，底部都有 tabBar。
+调用页面路由带的参数可以在目标页面的onLoad中获取。
+
+更推荐开发者采用 module.exports 来暴露模块接口
+
+bind事件绑定不会阻止冒泡事件向上冒泡，catch事件绑定可以阻止冒泡事件向上冒泡。
+
+采用capture-bind、capture-catch关键字，后者将中断捕获阶段和取消冒泡阶段。
+
+<view id="outer" bind:touchstart="handleTap1" capture-bind:touchstart="handleTap2">
+  outer view
+  <view id="inner" bind:touchstart="handleTap3" capture-bind:touchstart="handleTap4">
+    inner view
+  </view>
+</view>
+
+点击 inner view 会先后调用handleTap2、handleTap4、handleTap3、handleTap1。
+
+将代码中的第一个capture-bind改为capture-catch，将只触发handleTap2。
+
+target
+触发事件的源组件。
+
+currentTarget
+事件绑定的当前组件。  (会冒泡的，冒泡到上一层，currentTarget就是冒泡到的事件)
+
+
+冒泡事件列表:
+touchstart	手指触摸动作开始
+tap	        手指触摸后马上离开
+touchmove	  手指触摸后移动
+bind事件绑定不会阻止冒泡事件向上冒泡，catch事件绑定可以阻止冒泡事件向上冒泡
+bind:tap、catch:touchstart
+
+所有组件与属性都是小写，以连字符-连接
+
+属性类型
+Boolean,Number,String,Array,Object,EventHandler(事件处理函数名), Any(任意属性)
+
+数据类型
+number ： 数值
+string ：字符串
+boolean：布尔值
+object：对象
+function：函数
+array : 数组
+date：日期
+regexp：正则
+
+
+wx.createSelectorQuery()
+
+wx:for
+默认 index为下标名，item为元素变量名
+使用 wx:for-item 可以指定数组当前元素的变量名，
+
+使用 wx:for-index 可以指定数组当前下标的变量名：
+
+<block/> 并不是一个组件，它仅仅是一个包装元素，不会在页面中做任何渲染，只接受控制属性。
+
+wx:if vs hidden
+因为 wx:if 之中的模板也可能包含数据绑定，所以当 wx:if 的条件值切换时，框架有一个局部渲染的过程，因为它会确保条件块在切换时销毁或重新渲染。
+
+同时 wx:if 也是惰性的，如果在初始渲染条件为 false，框架什么也不做，在条件第一次变成真的时候才开始局部渲染。
+
+相比之下，hidden 就简单的多，组件始终会被渲染，只是简单的控制显示与隐藏。
+
+一般来说，wx:if 有更高的切换消耗而 hidden 有更高的初始渲染消耗。因此，如果需要频繁切换的情景下，用 hidden 更好，如果在运行时条件不大可能改变则 wx:if 较好。
+
+变量
+WXS 中的变量均为值的引用。
+没有声明的变量直接赋值使用，会被定义为全局变量。
+如果只声明变量而不赋值，则默认值为 undefined。
+var表现与javascript一致，会有变量提升。
+--------------------------------------------------------------------------------
+
+
+
+dataset
+
+page的结构
+1.每个page都是一个目录
+2.每个page对应4个文件
+  js——逻辑
+  json——页面配置
+  wxss——css
+  wxml——vue的template、react的html
+
+wxml
+1.容器
+  view、scroll-view、swiper
+2.表单
+  form、input、button、picker、contact-button
+3.媒体
+  audio、video、image、canvas、map
+4.其他
+  icon、text、progress、navigator
+
+事件
+当有个点击并且父级也有点击时就会发生冒泡事件
+bind:事件             正常事件
+catch:事件            正常事件、不冒泡
+capture-bind:事件     捕获事件
+capture-catch:事件    捕获事件、不冒泡
+
+--------------------------------------------------------------------------------
+
+单位：
+px      PC
+em
+%
+rem     移动
+rpx     微信  满宽750就行
+
+
+获取用户信息，open-type="getUserInfo"写在wxml里
+
+--------------------------------------------------------------------------------
+
+
+wx的for
+v-for="a,index in arr"
+  {{a}}
+  {{index}}
+
+  :key="index"
+
+wx:for="{{arr}}"
+  {{item}} //系统定好
+  {{index}}////系统定好    
+
+  wx:key="{{xxx}}"
+
+wx指令
+wx:xxx
+
+--------------------------------------------------------------------------------
+
+#### 3.设置数据
+(react 和 vue 的结合体)
+
+<!-- exmple -->
+this.setData({});
+this.setData({this.data.a});  类似于react的setState({})
+
+
+--------------------------------------------------------------------------------
+
+在app.json 中当page的第一条数据与tabBar list中的第一条数据一致就可以在对应叶显示对应的tabBar了(就比如起始页不想显示tabBar就page和list的第一条数据不一样即可)
 
 女主是刚找工作的毕业大学生，由于被"坑蒙拐骗"而进到一家xxx创业公司，公司有无良老板，臭美前台，奇怪的保洁大叔，没了，对！这公司就三个人。在经历一堆日常事务后，女主心力交瘁，特别想辞职，可是老板竟和她画大饼？!这个饼还是
 个惊天大饼……
